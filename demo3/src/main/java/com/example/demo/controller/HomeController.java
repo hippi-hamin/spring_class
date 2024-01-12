@@ -1,7 +1,12 @@
 package com.example.demo.controller;
 
+import javax.lang.model.SourceVersion;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.w3c.dom.ls.LSOutput;
 
 // @Controller : 해당 클래스를 컨트롤러 클래스로 스프링빈에 등록
 // 스프링빈 : 스프링이 관리해주는 자바 객체
@@ -24,4 +29,35 @@ public class HomeController {
 		return "hi";
 	}
 	
+	// /param1 주소를 처리하기 위한 메서드
+	@GetMapping("/param1")
+	// p1이라는 이름으로 전달 된 파라미터를 받아서 String p1에 담는다.
+	// 파라미터의 이름과 변수의 이름이 같다면 생략도 가능
+	// ex) @RequestParam String p1 = @RequestParam("p1") String p1
+	public String param1(@RequestParam("p1") String p1) {
+		System.out.println("p1" + p1);
+		return "index";
+	}
+	
+	@GetMapping("/param2")
+	public String param2(@RequestParam("p1") String p1, 
+						@RequestParam("p2")String p2) {
+		System.out.println("p1 = " + p1);
+		System.out.println("p2 = " + p2);
+		return "index";
+	}
+	
+	// form1 주소요청에 form1.html 출력
+	@GetMapping("/form1")
+	public String form1() {
+		return "form1";
+	}
+	
+	@PostMapping("/form1-param")
+	public String form1Param(@RequestParam("p1") String p1,
+							@RequestParam("p2") String p2) {
+		System.out.println("p1 = " + p1);
+		System.out.println("p2 = " + p2);
+		return "index";
+	}
 }
