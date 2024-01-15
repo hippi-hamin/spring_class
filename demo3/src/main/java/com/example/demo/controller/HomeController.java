@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.lang.model.SourceVersion;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.DemoDTO;
+
+import ch.qos.logback.core.pattern.FormatInfo;
 
 // @Controller : 해당 클래스를 컨트롤러 클래스로 스프링빈에 등록
 // 스프링빈 : 스프링이 관리해주는 자바 객체
@@ -97,5 +102,18 @@ public class HomeController {
 		System.out.println(demoDTO);
 		model.addAttribute("demo", demoDTO);
 		return "model3";
+	}
+	
+	@GetMapping("/model4")
+	public String model4(Model model) {
+		List<DemoDTO> list = new ArrayList<>();
+		for(int i=1; i<=10; i++) {
+			DemoDTO demoDTO = new DemoDTO();
+			demoDTO.setName("name" + i);
+			demoDTO.setAge(i);
+			list.add(demoDTO);
+		}
+		model.addAttribute("list", list);
+		return "model4";
 	}
 }

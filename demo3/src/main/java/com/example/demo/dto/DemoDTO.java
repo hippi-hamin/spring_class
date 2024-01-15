@@ -8,6 +8,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class DemoDTO {
-	private String name;
+	private String name; // name = form3의 name과 같아야 함.
 	private int age;	
 }
