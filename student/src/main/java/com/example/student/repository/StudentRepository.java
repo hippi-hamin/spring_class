@@ -19,5 +19,9 @@ public class StudentRepository {
 	public List<StudentDTO> findAll() {
 		return sql.selectList("Student.findAll");
 	}
+
+	public StudentDTO findById(Long id) {
+		return sql.selectOne("Student.findById", id);
+	}
 	
 }

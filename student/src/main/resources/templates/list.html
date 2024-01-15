@@ -15,7 +15,10 @@
 			<th>조회</th>
 		</tr>
 		<tr th:each="student: ${studentList}">
-			<td th:text="${student.id}"></td>
+			<td>
+				<!-- thymeleaf 문법 : | 경로 | 경로를 추가해주는.  -->
+				<a th:href="@{|/student/${student.id}|}" th:text="${student.id}"></a>
+			</td>
 			<td th:text="${student.studentName}"></td>
 			<td th:text="${student.studentNumber}"></td>
 			<td th:text="${student.studentMobile}"></td>
@@ -29,8 +32,9 @@
 <script th:inline="javascript">
 	const detail = (id) => {
 		console.log("클릭한 id", id);
-		// 1번 ㅋ르릭 => /student/1, 2번클릭 => /student/2
-		location.href = '/student/${id}';
+		// 1번클릭 => /student/1, 2번클릭 => /student/2
+		// location.href = "/student/" + id;
+		location.href = `/student/${id}`;
 	}
 </script>
 </html>

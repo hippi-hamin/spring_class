@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.student.dto.StudentDTO;
@@ -43,5 +44,12 @@ public class StudentController {
 		return "list";
 	}
 	
+	@GetMapping("/student/{id}")
+	public String findById(@PathVariable("id") Long id, Model model ) {
+		System.out.println("id = " + id);
+		StudentDTO studentDTO = studentService.findById(id);
+		model.addAttribute("student", studentDTO);
+		return "detail";
+	}	
 }
 
