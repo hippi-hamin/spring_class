@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.student.dto.StudentDTO;
+import java.util.List;
 
 @Repository
 public class StudentRepository {
@@ -12,9 +13,11 @@ public class StudentRepository {
 	private SqlSessionTemplate sql;
 
 	public void save(StudentDTO studentDTO) {
-		sql.insert("Student.save", studentDTO);
-		
+		sql.insert("Student.save", studentDTO);	
 	}
-	
+
+	public List<StudentDTO> findAll() {
+		return sql.selectList("Student.findAll");
+	}
 	
 }

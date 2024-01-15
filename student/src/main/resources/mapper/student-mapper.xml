@@ -8,4 +8,9 @@
 			<!-- values()에 DTO 필드 이름 적기. ex)values(#{DTO필드이름}) -->
 			values(#{studentName}, #{studentNumber}, #{studentMobile})
 	</insert>
+	
+	<select id="findAll" resultType="com.example.student.dto.StudentDTO">
+		select * from student_table
+	</select>
+	
 </mapper>
