@@ -12,13 +12,25 @@
 			<th>이름</th>
 			<th>학번</th>
 			<th>전화번호</th>
+			<th>조회</th>
 		</tr>
 		<tr th:each="student: ${studentList}">
 			<td th:text="${student.id}"></td>
 			<td th:text="${student.studentName}"></td>
 			<td th:text="${student.studentNumber}"></td>
 			<td th:text="${student.studentMobile}"></td>
+			<td>
+				<!-- '[[' 대괄호 두개를 써주는 타임리프 문법 사용하여 db로 전달 가능 -->
+				<button th:onclick="detail([[${student.id}]])">조회</button>
+			</td>
 		</tr>
 	</table>
 </body>
+<script th:inline="javascript">
+	const detail = (id) => {
+		console.log("클릭한 id", id);
+		// 1번 ㅋ르릭 => /student/1, 2번클릭 => /student/2
+		location.href = '/student/${id}';
+	}
+</script>
 </html>
