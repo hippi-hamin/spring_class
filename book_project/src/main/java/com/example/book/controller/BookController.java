@@ -29,7 +29,10 @@ public class BookController {
 	public String save(@ModelAttribute BookDTO bookDTO) {
 		System.out.println("BookDTO = " + bookDTO);
 		bookservice.save(bookDTO);
-		return "index";
+		// 단순하게 list.html만 요청
+//		return "list";
+		// redirect: 컨트롤러의 메서드에서 다른 메서드의 주소를 요청하고자 할 때
+		return "redirect:/list";
 	}
 	
 	@GetMapping("/list")
