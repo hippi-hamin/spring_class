@@ -23,7 +23,7 @@ public class BookService {
 		return bookRepository.findAll();		
 	}
 	
-	public BookDTO findById(Long id ) {
+	public BookDTO findById(Long id) {
 		return bookRepository.findById(id);
 	}
 }
